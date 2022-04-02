@@ -1,14 +1,14 @@
-const card = document.querySelectorAll(".card");
-const images = {
+"use strict";
+
+var card = document.querySelectorAll(".card");
+var images = {
   dataset: [],
   index: [],
-  elements: [],
+  elements: []
 };
-
-const score = document.querySelector("h2");
-
-card.forEach((item, index) => {
-  item.addEventListener("click", () => {
+var score = document.querySelector("h2");
+card.forEach(function (item, index) {
+  item.addEventListener("click", function () {
     item.classList.add("flip");
 
     if (images.index.length > 1 || item.classList.contains("matched")) {
@@ -22,28 +22,23 @@ card.forEach((item, index) => {
     images.elements.push(item);
 
     if (images.index.length > 1 && images.dataset[0] === images.dataset[1]) {
-      setTimeout(() => {
+      setTimeout(function () {
         score.innerHTML = "It is a match!";
       }, 800);
-
-      images.elements.forEach((els) => {
+      images.elements.forEach(function (els) {
         els.classList.add("matched");
       });
-    } else if (
-      images.index.length > 1 &&
-      images.dataset[0] !== images.dataset[1]
-    ) {
-      setTimeout(() => {
+    } else if (images.index.length > 1 && images.dataset[0] !== images.dataset[1]) {
+      setTimeout(function () {
         score.innerHTML = "It's not a match. Try again!";
       }, 800);
-
-      const handle = setTimeout(() => {
-        images.elements.forEach((els) => {
+      var handle = setTimeout(function () {
+        images.elements.forEach(function (els) {
           els.classList.remove("flip");
         });
         clearTimeout(handle);
       }, 1200);
-      setTimeout(() => {
+      setTimeout(function () {
         score.innerHTML = "Let's play!";
       }, 2000);
     } else {
@@ -51,3 +46,4 @@ card.forEach((item, index) => {
     }
   });
 });
+//# sourceMappingURL=index.dev.js.map
